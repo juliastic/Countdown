@@ -1,8 +1,8 @@
 //
 //  Countdown.swift
-//  Count Down
+//  CountDown
 //
-//  Created by Julia Grill on 06/01/2015.
+//  Created by Julia Grill on 08/01/2015.
 //  Copyright (c) 2015 Julia Grill. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import CoreData
 
 class Countdown: NSManagedObject {
 
-    @NSManaged var notification: AnyObject
     @NSManaged var countdownName: String
     @NSManaged var dateCreated: NSDate
+    @NSManaged var notification: AnyObject
 
 }

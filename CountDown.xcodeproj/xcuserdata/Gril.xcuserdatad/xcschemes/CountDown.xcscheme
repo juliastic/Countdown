@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81B47FBF1A5C59DD00FDD591"
-               BuildableName = "Count Down.app"
-               BlueprintName = "Count Down"
-               ReferencedContainer = "container:Count Down.xcodeproj">
+               BlueprintIdentifier = "817DDC121A5F248F002F22A2"
+               BuildableName = "CountDown.app"
+               BlueprintName = "CountDown"
+               ReferencedContainer = "container:CountDown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,10 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81B47FD71A5C59DD00FDD591"
-               BuildableName = "Count DownTests.xctest"
-               BlueprintName = "Count DownTests"
-               ReferencedContainer = "container:Count Down.xcodeproj">
+               BlueprintIdentifier = "817DDC2A1A5F248F002F22A2"
+               BuildableName = "CountDownTests.xctest"
+               BlueprintName = "CountDownTests"
+               ReferencedContainer = "container:CountDown.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,20 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "81B47FD71A5C59DD00FDD591"
-               BuildableName = "Count DownTests.xctest"
-               BlueprintName = "Count DownTests"
-               ReferencedContainer = "container:Count Down.xcodeproj">
+               BlueprintIdentifier = "817DDC2A1A5F248F002F22A2"
+               BuildableName = "CountDownTests.xctest"
+               BlueprintName = "CountDownTests"
+               ReferencedContainer = "container:CountDown.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "81B47FBF1A5C59DD00FDD591"
-            BuildableName = "Count Down.app"
-            BlueprintName = "Count Down"
-            ReferencedContainer = "container:Count Down.xcodeproj">
+            BlueprintIdentifier = "817DDC121A5F248F002F22A2"
+            BuildableName = "CountDown.app"
+            BlueprintName = "CountDown"
+            ReferencedContainer = "container:CountDown.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,10 +76,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "81B47FBF1A5C59DD00FDD591"
-            BuildableName = "Count Down.app"
-            BlueprintName = "Count Down"
-            ReferencedContainer = "container:Count Down.xcodeproj">
+            BlueprintIdentifier = "817DDC121A5F248F002F22A2"
+            BuildableName = "CountDown.app"
+            BlueprintName = "CountDown"
+            ReferencedContainer = "container:CountDown.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,10 +95,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "81B47FBF1A5C59DD00FDD591"
-            BuildableName = "Count Down.app"
-            BlueprintName = "Count Down"
-            ReferencedContainer = "container:Count Down.xcodeproj">
+            BlueprintIdentifier = "817DDC121A5F248F002F22A2"
+            BuildableName = "CountDown.app"
+            BlueprintName = "CountDown"
+            ReferencedContainer = "container:CountDown.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

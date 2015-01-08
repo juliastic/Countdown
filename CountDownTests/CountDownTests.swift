@@ -1,15 +1,15 @@
 //
-//  Count_DownTests.swift
-//  Count DownTests
+//  CountDownTests.swift
+//  CountDownTests
 //
-//  Created by Julia Grill on 06/01/2015.
+//  Created by Julia Grill on 08/01/2015.
 //  Copyright (c) 2015 Julia Grill. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class Count_DownTests: XCTestCase {
+class CountDownTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
