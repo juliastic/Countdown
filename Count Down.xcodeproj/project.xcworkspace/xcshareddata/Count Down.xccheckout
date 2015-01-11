@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E797D2D2-D3D3-4937-82AB-871E9C56E7FB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Count Down</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FB83E237D40D06527ADC7DB501DF6FD19D88C726</key>
+		<string>https://github.com/juliastic/countdownapp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Count Down.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FB83E237D40D06527ADC7DB501DF6FD19D88C726</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/juliastic/countdownapp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FB83E237D40D06527ADC7DB501DF6FD19D88C726</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FB83E237D40D06527ADC7DB501DF6FD19D88C726</string>
+			<key>IDESourceControlWCCName</key>
+			<string>countdownapp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
