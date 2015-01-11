@@ -77,11 +77,7 @@ class CountdownTableViewController: UITableViewController, NSFetchedResultsContr
             let progress = calculateProgress(dateCreated!, fireDate: notification!.fireDate!)
             let countdown = TimeFormatter.calculateTime(now, fireDate: notification!.fireDate!)
             
-            var numberFormatter = NSNumberFormatter()
-            numberFormatter.numberStyle = .DecimalStyle
-            numberFormatter.maximumFractionDigits = 2
-            
-            cell.timeLeftLabel.text = numberFormatter.stringFromNumber(progress)! + "% \n \(countdown.0):\(countdown.1):\(countdown.2):\(countdown.3)"
+            cell.timeLeftLabel.text = progress + "% \n \(countdown.0):\(countdown.1):\(countdown.2):\(countdown.3)"
             
         }
         var swipeLeft = UISwipeGestureRecognizer(target: self, action: "deleteAction:")
@@ -99,14 +95,18 @@ class CountdownTableViewController: UITableViewController, NSFetchedResultsContr
         defaults.setBool(true, forKey: "newDataAdded")
     }
     
-    func calculateProgress(dateCreated: NSDate, fireDate: NSDate) -> Double {
+    func calculateProgress(dateCreated: NSDate, fireDate: NSDate) -> String {
         var totalTimeInterval = fireDate.timeIntervalSinceDate(dateCreated)
         let passedTimeInterval = NSDate().timeIntervalSinceDate(dateCreated)
         
+        var numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        numberFormatter.maximumFractionDigits = 2
+        
         if (passedTimeInterval / totalTimeInterval) * 100 <= 100 {
-            return (passedTimeInterval / totalTimeInterval) * 100
+            return numberFormatter.stringFromNumber((passedTimeInterval / totalTimeInterval) * 100)!
         } else {
-            return 100
+            return "> 100"
         }
     }
     
@@ -127,7 +127,7 @@ class CountdownTableViewController: UITableViewController, NSFetchedResultsContr
             numberFormatter.numberStyle = .DecimalStyle
             numberFormatter.maximumFractionDigits = 2
             
-            cell.timeLeftLabel.text = numberFormatter.stringFromNumber(progress)! + "% \n \(countdown.0):\(countdown.1):\(countdown.2):\(countdown.3)"
+            cell.timeLeftLabel.text = progress + "% \n \(countdown.0):\(countdown.1):\(countdown.2):\(countdown.3)"
         }
     }
     

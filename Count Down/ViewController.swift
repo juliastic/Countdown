@@ -150,9 +150,9 @@ class ViewController: UIViewController {
         // Check if countdown is finished
         if countdownDate?.compare(NSDate()) == NSComparisonResult.OrderedAscending && popOverBool == true {
             // countdownDate is earlier than now
-            updateLabelsTimer?.invalidate()
+            //updateLabelsTimer?.invalidate()
             // Show alert that countdown is done
-            var countdownOverAlert = UIAlertController(title: "Countdown over!", message: "Your countdown \(eventDescriptionLabel.text) is finished", preferredStyle: UIAlertControllerStyle.Alert)
+            var countdownOverAlert = UIAlertController(title: "Countdown over!", message: "This countdown is finished!", preferredStyle: UIAlertControllerStyle.Alert)
             countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             presentViewController(countdownOverAlert, animated: true, completion: nil)
             popOverBool = false

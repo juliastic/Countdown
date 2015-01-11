@@ -39,7 +39,7 @@ class AddTableViewController: UITableViewController {
             // create & schedule notification
             var countdownNotification = UILocalNotification()
             countdownNotification.fireDate = countdownDate.date
-            countdownNotification.alertBody = countdownName.text
+            countdownNotification.alertBody = "Your countdown \(countdownName.text!) is finished!"
             countdownNotification.applicationIconBadgeNumber = 0
             countdownNotification.timeZone = NSTimeZone.defaultTimeZone()
             UIApplication.sharedApplication().scheduleLocalNotification(countdownNotification)
