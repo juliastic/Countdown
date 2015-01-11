@@ -1,1 +1,10 @@
-“*.xcuserstate”
+# Mac OS X
+*.DS_Store
+
+# Xcode
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+# Backup files
+*~.nib
