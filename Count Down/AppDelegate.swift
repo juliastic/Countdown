@@ -24,8 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageControl.backgroundColor = UIColor.whiteColor()
         
         let navigationController = window!.rootViewController as UINavigationController
+
         let contentViewController = navigationController.topViewController as? ContentViewController
         contentViewController?.managedObjectContext = managedObjectContext
+
         
         return true
     }

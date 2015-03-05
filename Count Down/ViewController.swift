@@ -166,6 +166,7 @@ class ViewController: UIViewController {
         
         // Check if countdown is finished
         if countdownDate?.compare(NSDate()) == NSComparisonResult.OrderedAscending && popOverBool == true {
+
             var countdownOverAlert = UIAlertController(title: "Countdown over!", message: "This countdown is finished!", preferredStyle: UIAlertControllerStyle.Alert)
             countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
             presentViewController(countdownOverAlert, animated: true, completion: nil)

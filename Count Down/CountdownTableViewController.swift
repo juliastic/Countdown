@@ -84,6 +84,7 @@ class CountdownTableViewController: UITableViewController, NSFetchedResultsContr
             let countdown = TimeFormatter.calculateTime(now, fireDate: notification!.fireDate!)
             cell.countdownName.text = eventName! + "\n" + countingDownToCountdown(notification!.fireDate!)
             cell.countdownName.backgroundColor = randomBackgroundColor
+
             cell.timeLeftLabel.text = progress + "% \n \(countdown.0):\(countdown.1):\(countdown.2):\(countdown.3)"
             
         }
