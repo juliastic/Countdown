@@ -13,6 +13,6 @@ class Countdown: NSManagedObject {
 
     @NSManaged var notification: AnyObject
     @NSManaged var countdownName: String
-    @NSManaged var dateCreated: NSDate
+    @NSManaged var dateCreated: Date
 
 }

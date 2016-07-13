@@ -22,154 +22,99 @@ class ViewController: UIViewController {
     
     // MARK: Data Storage
     
-    var managedObjectContext: NSManagedObjectContext?
+    var managedObjectContext = CoreDataStore.SharedInstance.managedObjectContext
     var countdownModel: CountDownModelProtocol?
     var pageViewController: UIPageViewController?
-    
-    var pageCountdown: NSDate!
-    var pageString: String!
+
+    var updateLabelsTimer = Timer()
+    var pageCountdown: Date!
+    var pageString = ""
     var currentIndex = 0
-    var updateLabelsTimer: NSTimer?
-    var amountOfCountdowns = 1
+    var popOverBool = true
     
-    var countdownDate: NSDate? {
+    var countdownDate: Date? {
         didSet {
-            updateLabelsTimer?.invalidate()
-            updateLabelsTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTimeRemaining", userInfo: nil, repeats: true)
+            updateLabelsTimer.invalidate()
+            updateLabelsTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.updateTimeRemaining), userInfo: nil, repeats: true)
         }
     }
     
     // MARK: UIViewController
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
         
-        var fetchRequestData = NSFetchRequest()
-        var error: NSError? = nil
-        var entity = NSEntityDescription.entityForName("Countdown", inManagedObjectContext:managedObjectContext!)
+        let fetchRequestData: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
+
+        let entity = NSEntityDescription.entity(forEntityName: "Countdown", in:managedObjectContext)
         fetchRequestData.entity = entity
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        var newDataAdded = defaults.boolForKey("newDataAdded")
-        var countdownForKey = defaults.integerForKey("indexClicked")
-        var countdownRow = countdownForKey
+        let defaults = UserDefaults.standard()
+        let newDataAdded = defaults.bool(forKey: "newDataAdded")
+        let countdownForKey = defaults.integer(forKey: "indexClicked")
         
         if newDataAdded {
-            var fetchedObjects = (managedObjectContext?.executeFetchRequest(fetchRequestData, error: &error) as [Countdown])
-                var fetchedObject = fetchedObjects[countdownForKey]
+            do {
+                let fetchedObjects = try managedObjectContext.fetch(fetchRequestData) as! [Countdown]
+                let fetchedObject = fetchedObjects[countdownForKey]
                 countdownDate = fetchedObject.notification.fireDate
                 eventDescriptionLabel.text = fetchedObject.countdownName
-                defaults.setBool(false, forKey: "newDataAdded")
+                defaults.set(false, forKey: "newDataAdded")
+            } catch let error as NSError {
+                let alert = UIAlertController(title: "Error", message: "Items couldn't be fetched", preferredStyle: .alert)
+                present(alert, animated: true, completion: nil)
+                print("Fetch failed: \(error.localizedDescription)")
+            }
+            
         } else {
-            countdownDate = pageCountdown//fetchedObject.notification.fireDate
-            eventDescriptionLabel.text = pageString//fetchedObject.countdownName
+            countdownDate = pageCountdown
+            eventDescriptionLabel.text = pageString
         }
         
         updateTimeRemaining()
     }
     
-    var switchBool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "addNewCountdown" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let destinationVC = navigationController.topViewController as AddViewController
-            destinationVC.managedObjectContext = managedObjectContext
-        } else if segue.identifier == "showCountdowns" {
-            var contentViewController = segue.destinationViewController as CountdownTableViewController
-            contentViewController.managedObjectContext = managedObjectContext!
-            
-        }
-    }
+    // MARK: - Custom Functions
     
     func numberOfCountdowns() -> Int {
-        var fetchRequestData = NSFetchRequest()
-        var error: NSError? = nil
-        
-        var entity = NSEntityDescription.entityForName("Countdown", inManagedObjectContext:managedObjectContext!)
-        
+        let fetchRequestData: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
+        let entity = NSEntityDescription.entity(forEntityName: "Countdown", in:managedObjectContext)
         fetchRequestData.entity = entity
-        var dateSort = NSSortDescriptor(key: "dateCreated", ascending: false)
-        fetchRequestData.sortDescriptors = NSArray(object: dateSort)
+        
+        let dateSort = SortDescriptor(key: "dateCreated", ascending: false)
+        fetchRequestData.sortDescriptors = [dateSort]
         fetchRequestData.fetchLimit = 20
         
-        var countdownNameSort = NSSortDescriptor(key: "countdownName", ascending: false)
-        fetchRequestData.sortDescriptors = NSArray(object: countdownNameSort)
+        let countdownNameSort = SortDescriptor(key: "countdownName", ascending: false)
+        fetchRequestData.sortDescriptors = [countdownNameSort]
         fetchRequestData.fetchLimit = 20
         
         fetchRequestData.sortDescriptors = [dateSort, countdownNameSort]
-        
-        var fetchedObjects = (managedObjectContext!.executeFetchRequest(fetchRequestData, error:&error) as [Countdown])
-        return fetchedObjects.count
-    }
-    
-    func switchCountdown(sender: UISwipeGestureRecognizer) {
-        var fetchRequestData = NSFetchRequest()
-        var error: NSError? = nil
-        
-        var entity = NSEntityDescription.entityForName("Countdown", inManagedObjectContext:managedObjectContext!)
-        
-        fetchRequestData.entity = entity
-        var dateSort = NSSortDescriptor(key: "dateCreated", ascending: false)
-        fetchRequestData.sortDescriptors = NSArray(object: dateSort)
-        fetchRequestData.fetchLimit = 20
-        
-        var countdownNameSort = NSSortDescriptor(key: "countdownName", ascending: false)
-        fetchRequestData.sortDescriptors = NSArray(object: countdownNameSort)
-        fetchRequestData.fetchLimit = 20
-        
-        fetchRequestData.sortDescriptors = [dateSort, countdownNameSort]
-        
-        var fetchedObjects = (managedObjectContext!.executeFetchRequest(fetchRequestData, error:&error) as [Countdown])
-        amountOfCountdowns = fetchedObjects.count
-        
-        if sender.direction == UISwipeGestureRecognizerDirection.Right && fetchedObjects.count != 0 {
-            if currentIndex < fetchedObjects.count {
-                currentIndex--
-            }
-        } else if sender.direction == UISwipeGestureRecognizerDirection.Left && fetchedObjects.count != 0 {
-            if currentIndex >= 1 {
-                currentIndex++
-            }
+        do {
+            let fetchedObjects = try managedObjectContext.fetch(fetchRequestData) as! [Countdown]
+            return fetchedObjects.count
+        } catch let error as NSError {
+            print(error)
+            return 0
         }
-        
-        if currentIndex < 0 {
-            currentIndex = fetchedObjects.count-1
-        } else if currentIndex >= fetchedObjects.count {
-            currentIndex = 0
-        }
-        
-        
-        let selectedCountdown = fetchedObjects[currentIndex]
-        let fireDate = selectedCountdown.notification.fireDate
-        countdownDate = fireDate
-    
-        let countdownName = selectedCountdown.countdownName
-        eventDescriptionLabel.text = countdownName
     }
-    
-    // MARK: Custom Methods
-    
-    var popOverBool = true
     
     func updateTimeRemaining() {
-        let (days, hours, minutes, seconds) = TimeFormatter.calculateTime(NSDate(), fireDate: countdownDate!)
+        let (days, hours, minutes, seconds) = TimeFormatter.calculateTime(Date(), fireDate: countdownDate!)
         daysLabel.text = "\(days)"
         hoursLabel.text = "\(hours)"
         minutesLabel.text = "\(minutes)"
         secondsLabel.text = "\(seconds)"
         
-        // Check if countdown is finished
-        if countdownDate?.compare(NSDate()) == NSComparisonResult.OrderedAscending && popOverBool == true {
-
-            var countdownOverAlert = UIAlertController(title: "Countdown over!", message: "This countdown is finished!", preferredStyle: UIAlertControllerStyle.Alert)
-            countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-            presentViewController(countdownOverAlert, animated: true, completion: nil)
+        if countdownDate?.compare(Date()) == ComparisonResult.orderedAscending && popOverBool == true {
+            let countdownOverAlert = UIAlertController(title: "Countdown over!", message: "This countdown is finished!", preferredStyle: UIAlertControllerStyle.alert)
+            countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            view.window?.rootViewController?.present(countdownOverAlert, animated: true, completion: nil)
             popOverBool = false
         }
     }

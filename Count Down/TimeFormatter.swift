@@ -10,28 +10,28 @@ import UIKit
 
 struct TimeFormatter {
     
-    static func secondsInDays(seconds: NSTimeInterval) -> Int {
+    static func secondsInDays(_ seconds: TimeInterval) -> Int {
         return secondsInHours(seconds) / 24
     }
     
-    static func secondsInHours(seconds: NSTimeInterval) -> Int {
-        return secondsInMinutes(seconds) / 60 // same as: seconds / (60.0 * 60.0), i.e. seconds
+    static func secondsInHours(_ seconds: TimeInterval) -> Int {
+        return secondsInMinutes(seconds) / 60
     }
     
-    static func secondsInMinutes(seconds: NSTimeInterval) -> Int {
+    static func secondsInMinutes(_ seconds: TimeInterval) -> Int {
         return Int(seconds) / 60
     }
     
-    static func secondsInSeconds(seconds: NSTimeInterval) -> Int {
+    static func secondsInSeconds(_ seconds: TimeInterval) -> Int {
         return Int(seconds) % 60
     }
     
-    static func calculateTime(dateCreated: NSDate, fireDate: NSDate) -> (Int, Int, Int, Int) {
-        var countdownTime = fireDate.timeIntervalSinceDate(dateCreated)
-        var days = TimeFormatter.secondsInDays(countdownTime)
-        var hours = TimeFormatter.secondsInHours(countdownTime) - TimeFormatter.secondsInDays(countdownTime) * 24
-        var minutes = TimeFormatter.secondsInMinutes(countdownTime) - TimeFormatter.secondsInHours(countdownTime) * 60
-        var seconds = TimeFormatter.secondsInSeconds(countdownTime)
+    static func calculateTime(_ dateCreated: Date, fireDate: Date) -> (Int, Int, Int, Int) {
+        let countdownTime = fireDate.timeIntervalSince(dateCreated)
+        let days = secondsInDays(countdownTime)
+        let hours = secondsInHours(countdownTime) - secondsInDays(countdownTime) * 24
+        let minutes = secondsInMinutes(countdownTime) - secondsInHours(countdownTime) * 60
+        let seconds = secondsInSeconds(countdownTime)
         return (days, hours, minutes, seconds)
     }
 }

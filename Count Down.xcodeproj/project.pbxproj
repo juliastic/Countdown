@@ -8,16 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		075D58B41A5FCC690088FD56 /* Count_Down.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 075D58B21A5FCC690088FD56 /* Count_Down.xcdatamodeld */; };
-		8166802B1A5C5F4E0038290D /* EmptyState.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8166802A1A5C5F4E0038290D /* EmptyState.xib */; };
+		811D409E1B1B1A6D00717EFD /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D409D1B1B1A6D00717EFD /* CoreDataStore.swift */; };
+		811D40A21B1B4C1900717EFD /* OverViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D40A11B1B4C1900717EFD /* OverViewViewController.swift */; };
+		8189FB9C1B249CFE008EB0F0 /* CalculationStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8189FB9B1B249CFE008EB0F0 /* CalculationStruct.swift */; };
 		81AD72F01AA10D2100D11AB7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AD72EF1AA10D2100D11AB7 /* AddViewController.swift */; };
 		81AD72F21AA11DA100D11AB7 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AD72F11AA11DA100D11AB7 /* ContentViewController.swift */; };
 		81B47FC61A5C59DD00FDD591 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FC51A5C59DD00FDD591 /* AppDelegate.swift */; };
 		81B47FD01A5C59DD00FDD591 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81B47FCF1A5C59DD00FDD591 /* Images.xcassets */; };
 		81B47FDF1A5C59DD00FDD591 /* Count_DownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FDE1A5C59DD00FDD591 /* Count_DownTests.swift */; };
 		81B47FE91A5C5AB700FDD591 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FE81A5C5AB700FDD591 /* TimeFormatter.swift */; };
-		81B47FEB1A5C5AC000FDD591 /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FEA1A5C5AC000FDD591 /* AddTableViewController.swift */; };
 		81B47FF01A5C5ACE00FDD591 /* CountdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FED1A5C5ACE00FDD591 /* CountdownTableViewCell.swift */; };
-		81B47FF11A5C5ACE00FDD591 /* CountdownTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FEE1A5C5ACE00FDD591 /* CountdownTableViewController.swift */; };
 		81B47FF31A5C5AD700FDD591 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81B47FF21A5C5AD700FDD591 /* Main.storyboard */; };
 		81B47FF71A5C5AE400FDD591 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FF51A5C5AE400FDD591 /* ViewController.swift */; };
 		81B47FF91A5C5AFF00FDD591 /* CountdownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FF81A5C5AFF00FDD591 /* CountdownModel.swift */; };
@@ -37,8 +37,10 @@
 /* Begin PBXFileReference section */
 		075D58B31A5FCC690088FD56 /* Count_Down.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Count_Down.xcdatamodel; sourceTree = "<group>"; };
 		075D58B51A5FCE0F0088FD56 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8166802A1A5C5F4E0038290D /* EmptyState.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyState.xib; sourceTree = "<group>"; };
+		811D409D1B1B1A6D00717EFD /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		811D40A11B1B4C1900717EFD /* OverViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverViewViewController.swift; sourceTree = "<group>"; };
 		817DDC3C1A5F26B6002F22A2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Count Down/Info.plist"; sourceTree = SOURCE_ROOT; };
+		8189FB9B1B249CFE008EB0F0 /* CalculationStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationStruct.swift; sourceTree = "<group>"; };
 		81AD72EF1AA10D2100D11AB7 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		81AD72F11AA11DA100D11AB7 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		81B47FC01A5C59DD00FDD591 /* Count Down.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Count Down.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,9 +49,7 @@
 		81B47FD81A5C59DD00FDD591 /* Count DownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Count DownTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81B47FDE1A5C59DD00FDD591 /* Count_DownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Count_DownTests.swift; sourceTree = "<group>"; };
 		81B47FE81A5C5AB700FDD591 /* TimeFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
-		81B47FEA1A5C5AC000FDD591 /* AddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTableViewController.swift; sourceTree = "<group>"; };
 		81B47FED1A5C5ACE00FDD591 /* CountdownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTableViewCell.swift; sourceTree = "<group>"; };
-		81B47FEE1A5C5ACE00FDD591 /* CountdownTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTableViewController.swift; sourceTree = "<group>"; };
 		81B47FF21A5C5AD700FDD591 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		81B47FF51A5C5AE400FDD591 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		81B47FF81A5C5AFF00FDD591 /* CountdownModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownModel.swift; sourceTree = "<group>"; };
@@ -78,8 +78,10 @@
 			isa = PBXGroup;
 			children = (
 				81B47FF81A5C5AFF00FDD591 /* CountdownModel.swift */,
+				8189FB9B1B249CFE008EB0F0 /* CalculationStruct.swift */,
 				81B47FE81A5C5AB700FDD591 /* TimeFormatter.swift */,
 				81B47FFA1A5C5D1100FDD591 /* Countdown.swift */,
+				811D409D1B1B1A6D00717EFD /* CoreDataStore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -87,14 +89,20 @@
 		8166802D1A5C5F680038290D /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				811D40A11B1B4C1900717EFD /* OverViewViewController.swift */,
 				81AD72F11AA11DA100D11AB7 /* ContentViewController.swift */,
 				81B47FF51A5C5AE400FDD591 /* ViewController.swift */,
-				81B47FEE1A5C5ACE00FDD591 /* CountdownTableViewController.swift */,
-				81B47FED1A5C5ACE00FDD591 /* CountdownTableViewCell.swift */,
-				81B47FEA1A5C5AC000FDD591 /* AddTableViewController.swift */,
 				81AD72EF1AA10D2100D11AB7 /* AddViewController.swift */,
+				81B47FED1A5C5ACE00FDD591 /* CountdownTableViewCell.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		81771C421BB8348400CE9499 /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Sources";
 			sourceTree = "<group>";
 		};
 		81B47FB71A5C59DD00FDD591 = {
@@ -122,8 +130,8 @@
 				81B47FCF1A5C59DD00FDD591 /* Images.xcassets */,
 				8166802D1A5C5F680038290D /* ViewController */,
 				8166802C1A5C5F590038290D /* Models */,
+				81771C421BB8348400CE9499 /* Data Sources */,
 				81B47FF21A5C5AD700FDD591 /* Main.storyboard */,
-				8166802A1A5C5F4E0038290D /* EmptyState.xib */,
 				075D58B21A5FCC690088FD56 /* Count_Down.xcdatamodeld */,
 				81B47FC31A5C59DD00FDD591 /* Supporting Files */,
 			);
@@ -199,14 +207,18 @@
 		81B47FB81A5C59DD00FDD591 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Julia Grill";
 				TargetAttributes = {
 					81B47FBF1A5C59DD00FDD591 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					81B47FD71A5C59DD00FDD591 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 81B47FBF1A5C59DD00FDD591;
 					};
 				};
@@ -237,7 +249,6 @@
 			files = (
 				81B47FF31A5C5AD700FDD591 /* Main.storyboard in Resources */,
 				81B47FD01A5C59DD00FDD591 /* Images.xcassets in Resources */,
-				8166802B1A5C5F4E0038290D /* EmptyState.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AD72F01AA10D2100D11AB7 /* AddViewController.swift in Sources */,
-				81B47FF11A5C5ACE00FDD591 /* CountdownTableViewController.swift in Sources */,
+				811D40A21B1B4C1900717EFD /* OverViewViewController.swift in Sources */,
 				075D58B41A5FCC690088FD56 /* Count_Down.xcdatamodeld in Sources */,
+				811D409E1B1B1A6D00717EFD /* CoreDataStore.swift in Sources */,
 				81B47FF71A5C5AE400FDD591 /* ViewController.swift in Sources */,
 				81B47FC61A5C59DD00FDD591 /* AppDelegate.swift in Sources */,
 				81B47FF91A5C5AFF00FDD591 /* CountdownModel.swift in Sources */,
@@ -265,7 +277,7 @@
 				81B47FFB1A5C5D1100FDD591 /* Countdown.swift in Sources */,
 				81AD72F21AA11DA100D11AB7 /* ContentViewController.swift in Sources */,
 				81B47FF01A5C5ACE00FDD591 /* CountdownTableViewCell.swift in Sources */,
-				81B47FEB1A5C5AC000FDD591 /* AddTableViewController.swift in Sources */,
+				8189FB9C1B249CFE008EB0F0 /* CalculationStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +320,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -322,7 +336,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -352,13 +366,14 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -369,9 +384,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Count Down/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -379,9 +398,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Count Down/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -399,7 +423,9 @@
 				);
 				INFOPLIST_FILE = "Count DownTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Count Down.app/Count Down";
 			};
 			name = Debug;
@@ -414,7 +440,10 @@
 				);
 				INFOPLIST_FILE = "Count DownTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Count Down.app/Count Down";
 			};
 			name = Release;

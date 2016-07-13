@@ -10,37 +10,44 @@ import UIKit
 import CoreData
 
 protocol CountDownModelProtocol {
-    class func storeCountdownDataInManagedObjectContext(managedObjectContext: NSManagedObjectContext, notification: UILocalNotification, eventName: String, dateCreated: NSDate)
-    class func saveContext(managedObjectContext: NSManagedObjectContext)
+    static func storeCountdownDataInManagedObjectContext(_ managedObjectContext: NSManagedObjectContext, notification: UILocalNotification, eventName: String, dateCreated: Date)
+    static func saveContext(_ managedObjectContext: NSManagedObjectContext)
 }
 
 class CoredownModel: NSObject, CountDownModelProtocol {
     
-    class func storeCountdownDataInManagedObjectContext(managedObjectContext: NSManagedObjectContext, notification: UILocalNotification, eventName: String, dateCreated: NSDate) {
-        var countdown = NSEntityDescription.insertNewObjectForEntityForName("Countdown", inManagedObjectContext: managedObjectContext) as NSManagedObject
+    class func storeCountdownDataInManagedObjectContext(_ managedObjectContext: NSManagedObjectContext, notification: UILocalNotification, eventName: String, dateCreated: Date) {
+        let countdown = NSEntityDescription.insertNewObject(forEntityName: "Countdown", into: managedObjectContext) 
 
         countdown.setValue(dateCreated, forKey: "dateCreated")
         countdown.setValue(eventName, forKey: "countdownName")
         countdown.setValue(notification, forKey: "notification")
         
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Error saving context: \(error.localizedDescription)\n\(error.userInfo)")
+        }
+        
         CoredownModel.saveContext(managedObjectContext)
     }
     
-    class func saveContext(managedObjectContext: NSManagedObjectContext) {
-        var error: NSError? = nil
+    class func saveContext(_ managedObjectContext: NSManagedObjectContext) {
         let moc = managedObjectContext
         if moc == 0 {
             return
         }
+        
         if !moc.hasChanges {
             return
         }
         
-        if moc.save(&error) {
+        do {
+            try moc.save()
             return
+        } catch let error as NSError {
+            print("Error saving context: \(error.localizedDescription)\n\(error.userInfo)")
         }
-        
-        println("Error saving context: \(error?.localizedDescription)\n\(error?.userInfo)")
         abort()
     }
 }
