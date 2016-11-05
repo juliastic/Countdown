@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         let entity = NSEntityDescription.entity(forEntityName: "Countdown", in:managedObjectContext)
         fetchRequestData.entity = entity
         
-        let defaults = UserDefaults.standard()
+        let defaults = UserDefaults.standard
         let newDataAdded = defaults.bool(forKey: "newDataAdded")
         let countdownForKey = defaults.integer(forKey: "indexClicked")
         
@@ -86,11 +86,11 @@ class ViewController: UIViewController {
         let entity = NSEntityDescription.entity(forEntityName: "Countdown", in:managedObjectContext)
         fetchRequestData.entity = entity
         
-        let dateSort = SortDescriptor(key: "dateCreated", ascending: false)
+        let dateSort = NSSortDescriptor(key: "dateCreated", ascending: false)
         fetchRequestData.sortDescriptors = [dateSort]
         fetchRequestData.fetchLimit = 20
         
-        let countdownNameSort = SortDescriptor(key: "countdownName", ascending: false)
+        let countdownNameSort = NSSortDescriptor(key: "countdownName", ascending: false)
         fetchRequestData.sortDescriptors = [countdownNameSort]
         fetchRequestData.fetchLimit = 20
         

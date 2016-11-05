@@ -17,8 +17,8 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
     @IBOutlet weak var emptyStateLabel: UILabel!
     
     let managedObjectContext = CoreDataStore.SharedInstance.managedObjectContext
-    let defaults = UserDefaults.standard()
-    let calculationStruct = CalculationStruct()
+    let defaults = UserDefaults.standard
+    let calculation = Calculation()
     
     var editingBool = true
     var updateCellContentsTimer: Timer?
@@ -48,12 +48,12 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         tableView.delegate = self
         tableView.dataSource = self
         
-        addButton.layer.borderWidth = 2.0
-        addButton.layer.borderColor = UIColor.black().cgColor
+//        addButton.layer.borderWidth = 2.0
+//        addButton.layer.borderColor = UIColor.black().cgColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateCellContentsTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: "updateCells", userInfo: nil, repeats: true)
+        updateCellContentsTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(OverViewViewController.updateCells), userInfo: nil, repeats: true)
         updateCells()
     }
     
@@ -66,7 +66,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
             //remove second argument when I'm less lazy
             let (notification, _, dateCreated) = countdownDataAtIndexPath(indexPath)
             let now = Date()
-            let progress = CalculationStruct.calculateProgress(dateCreated!, fireDate: notification!.fireDate!)
+            let progress = Calculation.calculateProgress(dateCreated!, fireDate: notification!.fireDate!)
             let countdown = TimeFormatter.calculateTime(now, fireDate: notification!.fireDate!)
             
             cell.timeLeftLabel.text = progress + "\t \(countdown.0):\(countdown.1):\(countdown.2):\(countdown.3)"
@@ -106,7 +106,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         let (notification, eventName, dateCreated) = countdownDataAtIndexPath(indexPath)
         let now = Date()
         
-        let differentColors = [UIColor(red: 50.0, green: 60.0, blue: 60.0, alpha: 1), UIColor.blue(), UIColor.red(), UIColor.lightGray(), UIColor.green()]
+        let differentColors = [UIColor(red: 50.0, green: 60.0, blue: 60.0, alpha: 1), UIColor.blue, UIColor.red, UIColor.lightGray, UIColor.green]
         let randomIndex = Int(arc4random_uniform(UInt32(differentColors.count)))
         let randomBackgroundColor = differentColors[randomIndex]
         let lastAddedIndex = randomIndex
@@ -126,9 +126,9 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
             color = randomBackgroundColor
         }
         
-        let progress = CalculationStruct.calculateProgress(dateCreated!, fireDate: (notification?.fireDate!)!)
+        let progress = Calculation.calculateProgress(dateCreated!, fireDate: (notification?.fireDate!)!)
         let countdown = TimeFormatter.calculateTime(now, fireDate: notification!.fireDate!)
-        cell.countdownName.text = eventName! + "\t" + CalculationStruct.countingDownToCountdown(notification!.fireDate!)!
+        cell.countdownName.text = eventName! + "\t" + Calculation.countingDownToCountdown(notification!.fireDate!)!
         cell.timeLeftLabel.text = progress + "\t \(countdown.0):\(countdown.1):\(countdown.2):\(countdown.3)"
         
         lastAddedCellColor = color
@@ -140,7 +140,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         defaults.set((indexPath as NSIndexPath).row, forKey: "indexClicked")
 
         recentlyTappedCellColor = tableView.cellForRow(at: indexPath)!.contentView.backgroundColor
-        tableView.cellForRow(at: indexPath)?.contentView.backgroundColor = UIColor.lightGray()
+        tableView.cellForRow(at: indexPath)?.contentView.backgroundColor = UIColor.lightGray
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -171,7 +171,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
         let entity = NSEntityDescription.entity(forEntityName: "Countdown", in: managedObjectContext)
         fetchRequest.entity = entity
-        let sort = SortDescriptor(key: "dateCreated", ascending: false)
+        let sort = NSSortDescriptor(key: "dateCreated", ascending: false)
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.fetchBatchSize = 20
         
@@ -207,7 +207,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         tableView.reloadData()
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: AnyObject, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case NSFetchedResultsChangeType.insert:
             tableView.insertRows(at: [newIndexPath!], with: UITableViewRowAnimation.automatic)
@@ -219,6 +219,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
             tableView!.deleteRows(at: [indexPath!], with: .automatic)
             tableView.insertRows(at: [newIndexPath!], with: .automatic)
         }
+
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
@@ -232,9 +233,9 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject!)  {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!)  {
         if segue.identifier == "viewVC" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             let destinationVC = navigationController.topViewController as! ContentViewController
             destinationVC.countdownArray = fetchedResultsController.fetchedObjects as! [Countdown]
         }

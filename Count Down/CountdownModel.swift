@@ -34,9 +34,6 @@ class CoredownModel: NSObject, CountDownModelProtocol {
     
     class func saveContext(_ managedObjectContext: NSManagedObjectContext) {
         let moc = managedObjectContext
-        if moc == 0 {
-            return
-        }
         
         if !moc.hasChanges {
             return

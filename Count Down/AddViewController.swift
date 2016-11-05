@@ -30,9 +30,9 @@ class AddViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         let blurEffect = UIBlurEffect(style: .dark)
-        let bluredeffectView = UIVisualEffectView(effect: blurEffect)
-        bluredeffectView.frame = view.bounds
-        view.insertSubview(bluredeffectView, belowSubview: componentView)
+        let bluredEffectView = UIVisualEffectView(effect: blurEffect)
+        bluredEffectView.frame = view.bounds
+        view.insertSubview(bluredEffectView, belowSubview: componentView)
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,11 +48,9 @@ class AddViewController: UIViewController, UITextViewDelegate {
             countdownNotification.fireDate = countdownDate.date
             countdownNotification.alertBody = "Your countdown \(countdownName.text!) is finished!"
             countdownNotification.applicationIconBadgeNumber = 0
-            countdownNotification.timeZone = TimeZone.default()
-            UIApplication.shared().scheduleLocalNotification(countdownNotification)
+            UIApplication.shared.scheduleLocalNotification(countdownNotification)
             CoredownModel.storeCountdownDataInManagedObjectContext(managedObjectContext, notification: countdownNotification, eventName: countdownName.text, dateCreated: dateCreated)
             self.dismiss(animated: true, completion: nil)
-//            print(managedObjectContext)
         } else {
             let countdownOverAlert = UIAlertController(title: NSLocalizedString("No Event Name", comment: "Alert title when user doesnt enter an event name."), message: NSLocalizedString("Please add an event name.", comment: "Alert message when user doesn't enter an event name."), preferredStyle: UIAlertControllerStyle.alert)
             countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
@@ -77,7 +75,7 @@ class AddViewController: UIViewController, UITextViewDelegate {
     // MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField!) -> Bool {
-        countdownName.endEditing(true) // hides keyboard when hitting return
+        countdownName.endEditing(true)
         return true
     }
     
