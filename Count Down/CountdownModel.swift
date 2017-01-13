@@ -1,5 +1,5 @@
 //
-//  CountdownModel.swift
+//  CoredownModel.swift
 //  Count Down
 //
 //  Created by Julia Grill on 11/06/14.

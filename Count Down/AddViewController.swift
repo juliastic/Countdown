@@ -26,13 +26,27 @@ class AddViewController: UIViewController, UITextViewDelegate {
         countdownDate.minimumDate = Date().addingTimeInterval(120)
         countdownName.delegate = self
         countdownName.becomeFirstResponder()
+        
+        countdownDate.alpha = 0
+        countdownName.alpha = 0
+        componentView.alpha = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         let blurEffect = UIBlurEffect(style: .dark)
         let bluredEffectView = UIVisualEffectView(effect: blurEffect)
         bluredEffectView.frame = view.bounds
         view.insertSubview(bluredEffectView, belowSubview: componentView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        UIView.animate(withDuration: 1) {
+            self.countdownDate.alpha = 1
+            self.countdownName.alpha = 1
+            self.componentView.alpha = 1
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -41,16 +55,15 @@ class AddViewController: UIViewController, UITextViewDelegate {
     
     // MARK: Custom Functions
     
-    func saveCountdown() {
-        let dateCreated = Date()
+    private func saveCountdown() {
         if countdownName.text.characters.count > 0 {
             let countdownNotification = UILocalNotification()
             countdownNotification.fireDate = countdownDate.date
             countdownNotification.alertBody = "Your countdown \(countdownName.text!) is finished!"
             countdownNotification.applicationIconBadgeNumber = 0
             UIApplication.shared.scheduleLocalNotification(countdownNotification)
-            CoredownModel.storeCountdownDataInManagedObjectContext(managedObjectContext, notification: countdownNotification, eventName: countdownName.text, dateCreated: dateCreated)
-            self.dismiss(animated: true, completion: nil)
+            CoredownModel.storeCountdownDataInManagedObjectContext(managedObjectContext, notification: countdownNotification, eventName: countdownName.text, dateCreated: Date())
+            dismiss(animated: false, completion: nil)
         } else {
             let countdownOverAlert = UIAlertController(title: NSLocalizedString("No Event Name", comment: "Alert title when user doesnt enter an event name."), message: NSLocalizedString("Please add an event name.", comment: "Alert message when user doesn't enter an event name."), preferredStyle: UIAlertControllerStyle.alert)
             countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
@@ -65,8 +78,15 @@ class AddViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func dismiss(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+        UIView.animate(withDuration: 0.5) {
+            self.countdownDate.alpha = 0
+            self.countdownName.alpha = 0
+            self.componentView.alpha = 0
+        }
+        
+        dismiss(animated: false, completion: nil)
     }
+    
     
     @IBAction func saveButton(_ sender: AnyObject) {
         saveCountdown()

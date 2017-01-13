@@ -1,5 +1,5 @@
 //
-//  calculationStruct.swift
+//  CalculationStruct.swift
 //  Count Down
 //
 //  Created by Julia Grill on 07/06/2015.

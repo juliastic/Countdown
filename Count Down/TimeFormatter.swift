@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TimeFormatter.swift
 //  Count Down
 //
 //  Created by Julia Grill on 14/09/2014.

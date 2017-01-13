@@ -48,8 +48,6 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         tableView.delegate = self
         tableView.dataSource = self
         
-//        addButton.layer.borderWidth = 2.0
-//        addButton.layer.borderColor = UIColor.black().cgColor
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,12 +79,12 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         return (notification, eventName, creationDate)
     }
     
-     // MARK: - Table View data source
+     // MARK: - Table View Data Source
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsDidChange rows: Int, inSection section: Int) {
         emptyStateLabel.isHidden = rows != 0
     }
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
@@ -96,9 +94,8 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         if let sectionsArray = fetchedResultsController.sections {
             let numberOfObjectsInSections = sectionsArray[section].numberOfObjects
             return numberOfObjectsInSections
-        } else {
-            return 0
         }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

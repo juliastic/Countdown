@@ -11,23 +11,19 @@ import CoreData
 
 class ContentViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-    let managedObjectContext = CoreDataStore.SharedInstance.managedObjectContext
-    let defaults = UserDefaults.standard
+    private let managedObjectContext = CoreDataStore.SharedInstance.managedObjectContext
+    private let defaults = UserDefaults.standard
 
-    var currentIndex = 0
-    var amountOfCountdowns = 1
-    var placeholderViewController: UIViewController!
-    var pageViewController: UIPageViewController!
+    private var currentIndex = 0
+    private var placeholderViewController: UIViewController!
+    private var pageViewController: UIPageViewController!
+    private var presentationIndex: Int?
+    
     var countdownArray = Array<AnyObject>()
-    var presentationIndex: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPageControl()
-        reset()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         reset()
     }
     
@@ -37,14 +33,14 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
     
     //MARK: Custom Functions
     
-    func setupPageControl() {
+    private func setupPageControl() {
         let appearance = UIPageControl.appearance()
         appearance.pageIndicatorTintColor = UIColor.gray
         appearance.currentPageIndicatorTintColor = UIColor.white
         appearance.backgroundColor = UIColor.darkGray
     }
     
-    func reset() {
+    private func reset() {
         countdownArray = getCountdowns()
         let numCountdowns = countdownArray.count
         
@@ -61,12 +57,7 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
             
             let viewController: ViewController
             let countdownForKey = UserDefaults.standard.integer(forKey: "indexClicked")
-            
-            if countdownForKey != NSNotFound {
-                viewController = countdownAtIndex(countdownForKey)
-            } else {
-                viewController = countdownAtIndex(0)
-            }
+            viewController = countdown(at: countdownForKey)
             
             pageViewController.setViewControllers([viewController], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
             
@@ -83,9 +74,7 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
         }
     }
     
-    func getCountdowns() -> [Countdown] {
-        // iOS 10
-        // let fetchRequestData = Countdown.fetchRequest()
+    private func getCountdowns() -> [Countdown] {
         let fetchRequestData: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Countdown")
         let entity = NSEntityDescription.entity(forEntityName: "Countdown", in: managedObjectContext)
         fetchRequestData.entity = entity
@@ -94,24 +83,17 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
         
         fetchRequestData.sortDescriptors = [dateSort, countdownNameSort]
         
-//        guard fetchRequestData.accessibilityElementCount() != 0 else { throw Error.FetchingError }
-        
         do {
             let fetchedObjects = try managedObjectContext.fetch(fetchRequestData) as! [Countdown]
             return fetchedObjects
-//        } catch Error.FetchingError {
-//            print("Error whilst fetching countdowns")
-//            return []
         } catch let error as NSError {
             print("Error whilst getting countdowns: \(error)")
             return []
         }
     }
     
-    func countdownAtIndex(_ index: Int) -> ViewController {
+    private func countdown(at index: Int) -> ViewController {
         let viewController = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! ViewController
-        amountOfCountdowns = countdownArray.count
-        
         if countdownArray.count > 0 {
             if index >= countdownArray.count {
                 reset()
@@ -134,18 +116,20 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
     // MARK: UIPageViewControllerDelegate
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        if currentIndex > 0 && currentIndex < countdownArray.count {
-            return countdownAtIndex(currentIndex + 1)
+        if currentIndex < countdownArray.count {
+            return countdown(at: currentIndex+1)
         } else {
-            return countdownAtIndex(0)
+            return countdown(at: 0)
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if currentIndex > 0 && currentIndex < countdownArray.count {
-            return countdownAtIndex(currentIndex - 1)
+            return countdown(at: currentIndex-1)
+        } else if currentIndex == 0 {
+            return countdown(at: countdownArray.count-1)
         } else {
-            return countdownAtIndex(0)
+            return countdown(at: 0)
         }
     }
     
@@ -158,12 +142,7 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
         if countdownForKey != NSNotFound {
             UserDefaults.standard.set(0, forKey: "indexClicked")
             return countdownForKey
-        } else {
-            return 1
         }
-    }
-    
-    enum Errors: Error {
-        case FetchingError
+        return 0
     }
 }
