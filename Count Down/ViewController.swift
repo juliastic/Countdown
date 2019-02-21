@@ -104,7 +104,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateTimeRemaining() {
+    @objc func updateTimeRemaining() {
         let (days, hours, minutes, seconds) = TimeFormatter.calculateTime(Date(), fireDate: countdownDate!)
         daysLabel.text = "\(days)"
         hoursLabel.text = "\(hours)"
@@ -112,8 +112,8 @@ class ViewController: UIViewController {
         secondsLabel.text = "\(seconds)"
         
         if countdownDate?.compare(Date()) == ComparisonResult.orderedAscending && popOverBool == true {
-            let countdownOverAlert = UIAlertController(title: "Countdown over!", message: "This countdown is finished!", preferredStyle: UIAlertControllerStyle.alert)
-            countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            let countdownOverAlert = UIAlertController(title: "Countdown over!", message: "This countdown is finished!", preferredStyle: UIAlertController.Style.alert)
+            countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
             view.window?.rootViewController?.present(countdownOverAlert, animated: true, completion: nil)
             popOverBool = false
         }

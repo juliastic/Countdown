@@ -45,32 +45,32 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
         let numCountdowns = countdownArray.count
         
         if numCountdowns > 0 && pageViewController?.parent == nil {
-            pageViewController = storyboard?.instantiateViewController(withIdentifier: "PageViewController") as! UIPageViewController
+            pageViewController = storyboard?.instantiateViewController(withIdentifier: "PageViewController") as? UIPageViewController
             pageViewController.dataSource = self
-            placeholderViewController?.willMove(toParentViewController: nil)
-            pageViewController.willMove(toParentViewController: self)
-            pageViewController?.removeFromParentViewController()
-            addChildViewController(pageViewController)
+            placeholderViewController?.willMove(toParent: nil)
+            pageViewController.willMove(toParent: self)
+            pageViewController?.removeFromParent()
+            addChild(pageViewController)
             view.addSubview(pageViewController.view)
-            placeholderViewController?.didMove(toParentViewController: nil)
-            pageViewController.didMove(toParentViewController: self)
+            placeholderViewController?.didMove(toParent: nil)
+            pageViewController.didMove(toParent: self)
             
             let viewController: ViewController
             let countdownForKey = UserDefaults.standard.integer(forKey: "indexClicked")
             viewController = countdown(at: countdownForKey)
             
-            pageViewController.setViewControllers([viewController], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+            pageViewController.setViewControllers([viewController], direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)
             
             pageViewController.view.isUserInteractionEnabled = getCountdowns().count != 1
         } else if numCountdowns <= 0 && placeholderViewController?.parent == nil {
             placeholderViewController = storyboard!.instantiateViewController(withIdentifier: "placeHolderView") 
-            pageViewController?.willMove(toParentViewController: nil)
-            placeholderViewController.willMove(toParentViewController: self)
-            pageViewController?.removeFromParentViewController()
-            addChildViewController(placeholderViewController)
+            pageViewController?.willMove(toParent: nil)
+            placeholderViewController.willMove(toParent: self)
+            pageViewController?.removeFromParent()
+            addChild(placeholderViewController)
             view.addSubview(placeholderViewController.view)
-            pageViewController?.didMove(toParentViewController: nil)
-            placeholderViewController.didMove(toParentViewController: self)
+            pageViewController?.didMove(toParent: nil)
+            placeholderViewController.didMove(toParent: self)
         }
     }
     

@@ -57,7 +57,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
     
     // MARK: Custom Functions
     
-    func updateCells() {
+    @objc func updateCells() {
         let indexPathsArray = tableView.indexPathsForVisibleRows
         for indexPath in indexPathsArray! {
             let cell = tableView.cellForRow(at: indexPath) as! CountdownTableViewCell
@@ -148,8 +148,8 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             managedObjectContext.delete(fetchedResultsController.object(at: indexPath) as! Countdown)
             CoredownModel.saveContext(managedObjectContext)
         }
@@ -176,18 +176,10 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         _fetchedResultsController = theFetchedResultsController
         _fetchedResultsController!.delegate = self
         
-        var error: NSError? = nil
-        
         do {
             try _fetchedResultsController!.performFetch()
-        } catch let error1 as NSError {
-            error = error1
-            print("Unresolved error \(error), \(error?.userInfo)")
-        }
-
-        
-        if error != nil {
-            print("Unresolved error \(error), \(error?.userInfo)")
+        } catch let error {
+            print("Unresolved error \(error)")
         }
         
         return _fetchedResultsController!
@@ -207,7 +199,7 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case NSFetchedResultsChangeType.insert:
-            tableView.insertRows(at: [newIndexPath!], with: UITableViewRowAnimation.automatic)
+            tableView.insertRows(at: [newIndexPath!], with: UITableView.RowAnimation.automatic)
         case NSFetchedResultsChangeType.delete:
             tableView!.deleteRows(at: [indexPath!], with: .automatic)
         case NSFetchedResultsChangeType.update:

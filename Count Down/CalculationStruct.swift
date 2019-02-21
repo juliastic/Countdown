@@ -25,8 +25,7 @@ struct Calculation {
     static func countingDownToCountdown(_ endingDate: Date) -> String? {
         let converter = DateFormatter()
         converter.dateStyle = DateFormatter.Style.medium
-        let countdownDateString = converter.string(from: endingDate)
-        return countdownDateString.characters.count > 0 ? countdownDateString : nil
+        return converter.string(from: endingDate)
     }
     
     static func isCountdownFinished(_ fireDate: Date) -> Bool {

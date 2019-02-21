@@ -56,7 +56,7 @@ class AddViewController: UIViewController, UITextViewDelegate {
     // MARK: Custom Functions
     
     private func saveCountdown() {
-        if countdownName.text.characters.count > 0 {
+        if countdownName.text.count > 0 {
             let countdownNotification = UILocalNotification()
             countdownNotification.fireDate = countdownDate.date
             countdownNotification.alertBody = "Your countdown \(countdownName.text!) is finished!"
@@ -65,8 +65,8 @@ class AddViewController: UIViewController, UITextViewDelegate {
             CoredownModel.storeCountdownDataInManagedObjectContext(managedObjectContext, notification: countdownNotification, eventName: countdownName.text, dateCreated: Date())
             dismiss(animated: false, completion: nil)
         } else {
-            let countdownOverAlert = UIAlertController(title: NSLocalizedString("No Event Name", comment: "Alert title when user doesnt enter an event name."), message: NSLocalizedString("Please add an event name.", comment: "Alert message when user doesn't enter an event name."), preferredStyle: UIAlertControllerStyle.alert)
-            countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            let countdownOverAlert = UIAlertController(title: NSLocalizedString("No Event Name", comment: "Alert title when user doesnt enter an event name."), message: NSLocalizedString("Please add an event name.", comment: "Alert message when user doesn't enter an event name."), preferredStyle: UIAlertController.Style.alert)
+            countdownOverAlert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
             present(countdownOverAlert, animated: true, completion: nil)
         }
     }
