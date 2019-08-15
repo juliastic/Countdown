@@ -19,7 +19,7 @@
 		81B47FE91A5C5AB700FDD591 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FE81A5C5AB700FDD591 /* TimeFormatter.swift */; };
 		81B47FF01A5C5ACE00FDD591 /* CountdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FED1A5C5ACE00FDD591 /* CountdownTableViewCell.swift */; };
 		81B47FF31A5C5AD700FDD591 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81B47FF21A5C5AD700FDD591 /* Main.storyboard */; };
-		81B47FF71A5C5AE400FDD591 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FF51A5C5AE400FDD591 /* ViewController.swift */; };
+		81B47FF71A5C5AE400FDD591 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FF51A5C5AE400FDD591 /* MainViewController.swift */; };
 		81B47FF91A5C5AFF00FDD591 /* CountdownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FF81A5C5AFF00FDD591 /* CountdownModel.swift */; };
 		81B47FFB1A5C5D1100FDD591 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B47FFA1A5C5D1100FDD591 /* Countdown.swift */; };
 /* End PBXBuildFile section */
@@ -51,7 +51,7 @@
 		81B47FE81A5C5AB700FDD591 /* TimeFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
 		81B47FED1A5C5ACE00FDD591 /* CountdownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownTableViewCell.swift; sourceTree = "<group>"; };
 		81B47FF21A5C5AD700FDD591 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		81B47FF51A5C5AE400FDD591 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		81B47FF51A5C5AE400FDD591 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		81B47FF81A5C5AFF00FDD591 /* CountdownModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownModel.swift; sourceTree = "<group>"; };
 		81B47FFA1A5C5D1100FDD591 /* Countdown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,16 +86,16 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		8166802D1A5C5F680038290D /* ViewController */ = {
+		8166802D1A5C5F680038290D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				811D40A11B1B4C1900717EFD /* OverViewViewController.swift */,
 				81AD72F11AA11DA100D11AB7 /* ContentViewController.swift */,
-				81B47FF51A5C5AE400FDD591 /* ViewController.swift */,
+				81B47FF51A5C5AE400FDD591 /* MainViewController.swift */,
 				81AD72EF1AA10D2100D11AB7 /* AddViewController.swift */,
 				81B47FED1A5C5ACE00FDD591 /* CountdownTableViewCell.swift */,
 			);
-			name = ViewController;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		81771C421BB8348400CE9499 /* Data Sources */ = {
@@ -128,7 +128,7 @@
 			children = (
 				81B47FC51A5C59DD00FDD591 /* AppDelegate.swift */,
 				81B47FCF1A5C59DD00FDD591 /* Images.xcassets */,
-				8166802D1A5C5F680038290D /* ViewController */,
+				8166802D1A5C5F680038290D /* View Controllers */,
 				8166802C1A5C5F590038290D /* Models */,
 				81771C421BB8348400CE9499 /* Data Sources */,
 				81B47FF21A5C5AD700FDD591 /* Main.storyboard */,
@@ -208,24 +208,24 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Julia Grill";
 				TargetAttributes = {
 					81B47FBF1A5C59DD00FDD591 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 					};
 					81B47FD71A5C59DD00FDD591 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1030;
 						TestTargetID = 81B47FBF1A5C59DD00FDD591;
 					};
 				};
 			};
 			buildConfigurationList = 81B47FBB1A5C59DD00FDD591 /* Build configuration list for PBXProject "Count Down" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -270,7 +270,7 @@
 				811D40A21B1B4C1900717EFD /* OverViewViewController.swift in Sources */,
 				075D58B41A5FCC690088FD56 /* Count_Down.xcdatamodeld in Sources */,
 				811D409E1B1B1A6D00717EFD /* CoreDataStore.swift in Sources */,
-				81B47FF71A5C5AE400FDD591 /* ViewController.swift in Sources */,
+				81B47FF71A5C5AE400FDD591 /* MainViewController.swift in Sources */,
 				81B47FC61A5C59DD00FDD591 /* AppDelegate.swift in Sources */,
 				81B47FF91A5C5AFF00FDD591 /* CountdownModel.swift in Sources */,
 				81B47FE91A5C5AB700FDD591 /* TimeFormatter.swift in Sources */,
@@ -304,6 +304,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -358,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -410,8 +412,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -426,8 +427,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -447,8 +447,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Count Down.app/Count Down";
 			};
 			name = Debug;
@@ -466,8 +465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "JG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Count Down.app/Count Down";
 			};
 			name = Release;

@@ -207,8 +207,10 @@ class OverViewViewController: UIViewController, NSFetchedResultsControllerDelega
         case NSFetchedResultsChangeType.move:
             tableView!.deleteRows(at: [indexPath!], with: .automatic)
             tableView.insertRows(at: [newIndexPath!], with: .automatic)
+        @unknown default:
+            // do nothing
+            break
         }
-
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {

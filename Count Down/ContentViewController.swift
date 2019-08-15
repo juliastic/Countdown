@@ -55,7 +55,7 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
             placeholderViewController?.didMove(toParent: nil)
             pageViewController.didMove(toParent: self)
             
-            let viewController: ViewController
+            let viewController: MainViewController
             let countdownForKey = UserDefaults.standard.integer(forKey: "indexClicked")
             viewController = countdown(at: countdownForKey)
             
@@ -92,8 +92,8 @@ class ContentViewController: UIViewController, UIPageViewControllerDataSource, U
         }
     }
     
-    private func countdown(at index: Int) -> ViewController {
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! ViewController
+    private func countdown(at index: Int) -> MainViewController {
+        let viewController = storyboard?.instantiateViewController(withIdentifier: "detailVC") as! MainViewController
         if countdownArray.count > 0 {
             if index >= countdownArray.count {
                 reset()
